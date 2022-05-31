@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  web:
+    build: .
+    restart: on-failure
+    command: python manage.py runserver 0.0.0.0:${APP_PORT}
+    volumes:
+      - .:/code
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14.3-alpine
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: test
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+
+
+
