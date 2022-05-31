@@ -126,15 +126,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# Rest framework config
+# Auth
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'oauth2_provider.ext.rest_framework.OAuth2Authentication',
-    ]
-}
-
-
-# Login URL
-
-LOGIN_URL = '/admin/login'
+AUTH_USER_MODEL = 'core.User'
