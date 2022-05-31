@@ -1,4 +1,5 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import Group
+from django_rest_api.core.models import User
 from rest_framework import serializers
 
 
@@ -11,3 +12,13 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('email', 'password', 'first_name', 'last_name')
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('email', 'password', 'first_name', 'last_name')
+
+class GroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Group
+        fields = ('url', 'name')

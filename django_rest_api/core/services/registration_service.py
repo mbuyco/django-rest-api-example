@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from django_rest_api.core.models import User
 
 
 class RegistrationService:
