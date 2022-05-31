@@ -20,10 +20,15 @@ def register(request):
     """
     serializer = UserRegistrationSerializer(data=request.data)
     if not serializer.is_valid():
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response({
+            'errors': serializer.errors
+        }, status=status.HTTP_400_BAD_REQUEST)
     registration_service = RegistrationService()
-    user = registration_service.register(serializer.data)
-    return Response(user)
+    registration_service.register(serializer.data)
+    return Response({
+        'user': serializer.data,
+        'errors': [],
+    }, status.HTTP_201_CREATED)
 
 class UserViewSet(viewsets.ModelViewSet):
     """
